@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState }                                   
 import { getCryptoData }                                        from './service/cryptoService.ts';
 import SyncAltIcon from '@mui/icons-material/SyncAlt';
 import { CryptoCurrency, CurrencySymbol } from './models/interfaces.ts';
+import { formatNumber }                                                            from './utils/formatNumber.ts';
 
 /**
  * Enum representing the target currency for conversion.
@@ -246,7 +247,7 @@ function App() {
             type={'number'}
             label="Amount"
             variant="outlined"
-            value={currencyState.fromAmount}
+            value={formatNumber(currencyState.fromAmount)}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAmountChange(event.target.value, CurrencyTarget.to)}
           />
           <FormControl fullWidth>
@@ -271,7 +272,7 @@ function App() {
             type={'number'}
             label="Amount"
             variant="outlined"
-            value={isNaN(currencyState.toAmount) ? '' : currencyState.toAmount}
+            value={formatNumber(currencyState.toAmount)}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAmountChange(event.target.value, CurrencyTarget.from)}
           />
           <FormControl fullWidth>
